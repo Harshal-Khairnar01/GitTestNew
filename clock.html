@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #212121;
+            border: none;
+        }
+        
+        .container #clock {
+            width: 400px;
+            height: 150px;
+            background: gray;
+            border: 2px solid black;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 40px;
+            padding: 20px;
+            /* box-shadow: 0px 5px 10px 20px white; */
+        }
+
+        .container #clock .box {
+            width: 70px;
+            height: 70px;
+            background: black;
+            margin: 5px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: greenyellow;
+            font-size: xx-large;
+            font-family: cursive;
+            position: relative;
+        }
+        .container #clock .box span{
+            text-shadow: 0px 2px 2px black;
+            position: absolute;
+            top:70px;
+            font-size: small;
+            text-transform: uppercase;
+            font-family: monospace;
+            font-weight: bolder;
+            margin-top: 10px;
+            /* letter-spacing: 2px; */
+        }
+        .container #day {
+            margin-top: 20px;
+            width: 400px;
+            height: 30px;
+            background: rgb(0, 0, 0);
+            border: 5px solid gray;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 30px;
+            padding: 5px;
+            color: greenyellow;
+            font-family: cursive;
+            letter-spacing: 3px;
+        }
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="clock">
+            <div id="hr-box" class="box">
+                <div id="hr"></div>
+                <span>Hours</span>
+            </div>
+            <div id="min-box" class="box">
+                <div id="min"></div>
+                <span>Minutes</span>
+            </div>
+            <div id="sec-box" class="box">
+                <div id="sec"></div>
+                <span>Seconds</span>
+            </div>
+            <div id="milisec-box" class="box">
+                <div id="milisec"></div>
+                <span>MiliSeconds</span>
+            </div>
+        </div>
+        <div id="day">
+
+        </div>
+    </div>
+
+    <script>
+        setInterval(updtTime,100);
+
+        function updtTime() {
+            let t = new Date();
+            let hr = document.getElementById("hr");
+            let min = document.getElementById("min");
+            let sec = document.getElementById("sec");
+            let milisec=document.getElementById("milisec");
+
+
+            hr.innerHTML = t.getHours();
+            min.innerHTML = t.getMinutes();
+            sec.innerHTML = t.getSeconds();
+            milisec.innerHTML=t.getMilliseconds();
+
+            let day=t.getDay();
+            let dt=t.getDate();
+            let mon=t.getMonth();
+            let yr=t.getFullYear();
+
+            switch(day){
+                case 0: 
+                 day="Sunday";
+                 break;
+                case 1: 
+                 day="Monday";
+                 break;
+                case 2: 
+                 day="Tuesday";
+                 break;
+                case 3: 
+                 day="Wednesday";
+                 break;
+                case 4: 
+                 day="Thursday";
+                 break;
+                case 5: 
+                 day="Friday";
+                 break;
+                case 6: 
+                 day="Saturday";
+                 break;
+            }
+            switch(mon){
+                case 0: 
+                 mon="Jan";
+                 break;
+                case 1: 
+                 mon="Feb";
+                 break;
+                case 2: 
+                 mon="Mar";
+                 break;
+                case 3: 
+                 mon="Apr";
+                 break;
+                case 4: 
+                 mon="May";
+                 break;
+                case 5: 
+                 mon="Jun";
+                 break;
+                case 6: 
+                 mon="Jul";
+                 break;
+                case 7: 
+                 mon="Aug";
+                 break;
+                case 8: 
+                 mon="Sep";
+                 break;
+                case 9: 
+                 mon="Oct";
+                 break;
+                case 10: 
+                 mon="Nov";
+                 break;
+                case 11: 
+                 mon="Dec";
+                 break;
+            }
+
+            let dis=document.getElementById("day");
+            dis.innerHTML=`${dt}  ${mon}  ${yr} ,${day}`;
+
+        }
+
+    </script>
+</body>
+
+</html>
